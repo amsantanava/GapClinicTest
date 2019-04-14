@@ -53,7 +53,6 @@ namespace AppClinic.Controllers
                 u => u.Username == login.Username 
                 && u.Password == login.Password
                 ).FirstOrDefault();
-           
         }
     }
 }

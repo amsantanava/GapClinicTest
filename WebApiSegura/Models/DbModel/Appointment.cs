@@ -15,6 +15,7 @@ namespace AppClinic.Models
         public DateTime Date { get; set; }
 
         public int Status { get; set; }
+        public string Type { get; set; }
 
         public virtual Patient Patient { get; set; }
     }

@@ -118,13 +118,16 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AppointmentsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Models\DbModel\Appointment.cs" />
     <Compile Include="Models\DbModel\ClinicDbInitializer.cs" />
     <Compile Include="Models\DbModel\ClinicDbContext.cs" />
     <Compile Include="Models\DbModel\Patient.cs" />
     <Compile Include="Models\DbModel\User.cs" />
+    <Compile Include="Models\ErrorResponse.cs" />
     <Compile Include="Security\TokenGenerator.cs" />
     <Compile Include="Security\TokenValidationHandler.cs" />
     <Compile Include="Global.asax.cs">

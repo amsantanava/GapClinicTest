@@ -46,11 +46,7 @@ namespace AppClinic.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.Role)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Patients)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            
         }
     }
 }
