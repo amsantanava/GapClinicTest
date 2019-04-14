@@ -5,12 +5,13 @@ namespace AppClinic.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class ClinicDbContext : DbContext
+    public partial class ClinicDbContext : DbContext, IClinicDbContext
     {
         public ClinicDbContext()
             : base("name=DefaultConnection")
         {
         }
+
 
         public virtual DbSet<Appointment> Appointments { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }

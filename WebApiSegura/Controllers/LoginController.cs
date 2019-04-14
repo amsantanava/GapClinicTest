@@ -15,9 +15,19 @@ namespace AppClinic.Controllers
     [RoutePrefix("api/login")]
     public class LoginController : ApiController
     {
-        private ClinicDbContext context = new ClinicDbContext();
+        private IClinicDbContext context;
 
-        
+        public LoginController()
+        {
+            context = new ClinicDbContext();
+        }
+
+        public LoginController(IClinicDbContext dbContext)
+        {
+            context = dbContext;
+        }
+
+
         [HttpGet]
         [Route("echouser")]
         public IHttpActionResult EchoUser()
@@ -50,7 +60,7 @@ namespace AppClinic.Controllers
         private User GetUserByCredentials(LoginRequest login)
         {
             return context.Users.Where(
-                u => u.Username == login.Username 
+                u => u.Username == login.Username
                 && u.Password == login.Password
                 ).FirstOrDefault();
         }
