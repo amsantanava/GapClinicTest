@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Threading;
 using System.Web.Http;
 using AppClinic.Models;
 using AppClinic.Security;
+using AppClinic.BusinessLogic;
 
 namespace AppClinic.Controllers
 {
@@ -15,16 +14,16 @@ namespace AppClinic.Controllers
     [RoutePrefix("api/login")]
     public class LoginController : ApiController
     {
-        private IClinicDbContext context;
 
+        IBusinessUser businesUser;
         public LoginController()
         {
-            context = new ClinicDbContext();
+            businesUser = new BusinessUser();
         }
 
-        public LoginController(IClinicDbContext dbContext)
+        public LoginController(IBusinessUser businesUserParam)
         {
-            context = dbContext;
+            businesUser = businesUserParam;
         }
 
 
@@ -44,7 +43,7 @@ namespace AppClinic.Controllers
             if (login == null)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            User user = GetUserByCredentials(login);
+            User user = businesUser.GetUserByCredentials(login);
             if (user != null)
             {
                 var rolename = user.Role;
@@ -56,13 +55,6 @@ namespace AppClinic.Controllers
             return Unauthorized();
         }
 
-        //This method find the user with the credentials and if exists return the user 
-        private User GetUserByCredentials(LoginRequest login)
-        {
-            return context.Users.Where(
-                u => u.Username == login.Username
-                && u.Password == login.Password
-                ).FirstOrDefault();
-        }
+        
     }
 }

@@ -4,6 +4,7 @@ namespace AppClinic.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Data.Entity.Infrastructure;
 
     public partial class ClinicDbContext : DbContext, IClinicDbContext
     {
@@ -19,6 +20,7 @@ namespace AppClinic.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Patient>()
                 .Property(e => e.Nombre)
                 .IsUnicode(false);
@@ -30,11 +32,6 @@ namespace AppClinic.Models
             modelBuilder.Entity<Patient>()
                 .Property(e => e.Address)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Patient>()
-                .HasMany(e => e.Appointments)
-                .WithRequired(e => e.Patient)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)
